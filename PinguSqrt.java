@@ -41,7 +41,7 @@ public class PinguSqrt {
 		int digits = digits_right + digits_left;
 
 		// Adjust n to accommodate Integer.MAX_VALUE, get rid of decimal point
-		long input = ((long) n * (power(digits_right)));
+		long input = (long) (n * (power(digits_right)));
 
 		// <|=================== Loop ===================|>
 
@@ -87,7 +87,7 @@ public class PinguSqrt {
 			// Add next sqrt digit
 			sqrt += counter;
 			sqrt *= 10;
-			
+
 			// Update subtrahend
 			sub = - (2 * sqrt + 1);
 		}
