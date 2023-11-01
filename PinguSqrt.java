@@ -48,15 +48,21 @@ public class PinguSqrt {
 		// Initialize minuend, subtrahend, result, loop counter for power of 10
 		long min, sub = -1, sqrt = 0, rem = 0;
 
+		// Main loop
 		while (digits > 0) {
+			// Obtain digit pair from input
 			min = (int) (input / power(digits - 2));
+			// Calculate new minuend by adding remainder * 100 and digit pair
 			min += rem * 100;
 
+			// Print minuend
 			System.out.println(min);
 			System.out.println("--------");
 
+			// Reset counter for subtraction loop
 			int counter = 0;
 
+			// Subtraction loop
 			while (min + sub >= 0) {
 				min += sub;
 				System.out.println(sub);
@@ -64,25 +70,36 @@ public class PinguSqrt {
 				sub -= 2;
 			}
 
+			// Save remainder
 			rem = min;
 
+			// Print remainder and sqrt digit
 			System.out.println("--------");
-			System.out.println("Rest: " + min);
+			System.out.println("Rest: " + rem);
 			System.out.println("neue Ergebnis Ziffer: " + counter + "\n");
 
-			input %= power(digits - 1);
+			// Decrease digit count by two
 			digits -= 2;
+
+			// Delete processed digits
+			input %= power(digits);
+
+			// Add next sqrt digit
 			sqrt += counter;
 			sqrt *= 10;
+			
+			// Update subtrahend
 			sub = - (2 * sqrt + 1);
 		}
 
-		sqrt /= 100;
-		System.out.println("Ergebnis: " + sqrt);
+		// Convert to double, precision of two decimals, print result
+		double res = (double) sqrt / 100;
+		System.out.println("Ergebnis: " + res);
 	}
 
 	// <|=================== Helpers ===================|>
 
+	// Calculate power of 10
 	private static long power (long exponent) {
 		long result = 1;
 		while (exponent != 0) {
@@ -94,7 +111,6 @@ public class PinguSqrt {
 
 	public static void main(String[] args) {
 		// test your implementation here
-		sqrt(4);
 		sqrt(1049.76);
 	}
 }
