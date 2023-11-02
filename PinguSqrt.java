@@ -1,6 +1,5 @@
 package pgdp.math;
 
-import javax.sound.midi.SysexMessage;
 
 public class PinguSqrt {
 
@@ -8,22 +7,16 @@ public class PinguSqrt {
 		// Check for negative n
 		if (n < 0) {
 			System.out.println("Keine negativen Wurzeln!");
+			return;
 		}
 
-		// Sqrt of n and empty line
-		System.out.println("Wurzel aus " + n + "\n");
-
-		// Count digits left of decimal point
+		// Count digits left of decimal point,
 		int digits_left = 0;
-		int aux = (int) n;
-		while (aux > 0) {
-			aux /= 10;
-			digits_left++;
-		}
+		long temp = (long) n;
 
-		// Add 0 to the left if odd number of digits left of decimal point
-		if (digits_left % 2 == 1) {
-			int decimals_left = Integer.parseInt(String.valueOf(0) + aux);
+		while (temp > 0) {
+			temp /= 10;
+			digits_left++;
 		}
 
 		// Count digits right of decimal point
@@ -31,36 +24,46 @@ public class PinguSqrt {
 				substring(1);
 		int digits_right = decimalsString.length();
 
-		// Add 0 to the right if odd number of decimals
-		int decimals = Integer.parseInt(decimalsString);
-		if (digits_right % 2 == 1) {
-			decimals *= 10;
-		}
+		// Total digit count
+		int digits = digits_left + digits_right;
 
-		// Divide number into groups of 2 digits
-		int digits = digits_right + digits_left;
-
-		// Adjust n to accommodate Integer.MAX_VALUE, get rid of decimal point
+		// Get rid of decimals
 		long input = (long) (n * (power(digits_right)));
 
 		// <|=================== Loop ===================|>
 
-		// Initialize minuend, subtrahend, result, loop counter for power of 10
-		long min, sub = -1, sqrt = 0, rem = 0;
+		// Initialize loop variables
+		long min;
+		long sub;
+		long sqrt = 0;
+		long rem = 0;
+		int iter = 0;
+		int counter;
 
 		// Main loop
 		while (digits > 0) {
-			// Obtain digit pair from input
-			min = (int) (input / power(digits - 2));
+			// Loop iteration counter
+            iter++;
+
+            // Obtain digit pair from input
+			if (iter == 1 && digits_left % 2 == 1) {
+				min = (int) (input / power(digits - 1));
+			} else {
+				min = (int) (input / power(digits - 2));
+			}
+
 			// Calculate new minuend by adding remainder * 100 and digit pair
 			min += rem * 100;
+
+			// Update subtrahend
+			sub = - (2 * sqrt + 1);
 
 			// Print minuend
 			System.out.println(min);
 			System.out.println("--------");
 
 			// Reset counter for subtraction loop
-			int counter = 0;
+			counter = 0;
 
 			// Subtraction loop
 			while (min + sub >= 0) {
@@ -87,15 +90,12 @@ public class PinguSqrt {
 			// Add next sqrt digit
 			sqrt += counter;
 			sqrt *= 10;
-
-			// Update subtrahend
-			sub = - (2 * sqrt + 1);
 		}
 
-		// Convert to double, precision of two decimals, print result
-		double res = (double) sqrt / 100;
-		System.out.println("Ergebnis: " + res);
-	}
+			// Convert to double, precision of two decimals, print result
+			double res = (double) sqrt / power(digits_left / 2);
+			System.out.println("Ergebnis: " + res);
+		}
 
 	// <|=================== Helpers ===================|>
 
