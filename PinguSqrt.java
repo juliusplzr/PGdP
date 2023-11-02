@@ -35,10 +35,10 @@ public class PinguSqrt {
 		// Initialize loop variables
 		long min;
 		long sub;
+		int counter;
 		long sqrt = 0;
 		long rem = 0;
 		int iter = 0;
-		int counter;
 
 		// Main loop
 		while (digits > 0) {
@@ -93,7 +93,13 @@ public class PinguSqrt {
 		}
 
 			// Convert to double, precision of two decimals, print result
-			double res = (double) sqrt / power(digits_left / 2);
+			double res;
+			if (digits_left == 1) {
+				res = (double) sqrt / power(1);
+			} else {
+				res = (double) sqrt / power(digits_left / 2);
+			}
+			
 			System.out.println("Ergebnis: " + res);
 		}
 
@@ -111,6 +117,6 @@ public class PinguSqrt {
 
 	public static void main(String[] args) {
 		// test your implementation here
-		sqrt(1049.76);
+		sqrt(4.0);
 	}
 }
