@@ -43,9 +43,9 @@ public class PinguSqrt {
 		// Main loop
 		while (digits > 0) {
 			// Loop iteration counter
-            iter++;
+            		iter++;
 
-            // Obtain digit pair from input
+            		// Obtain digit pair from input
 			if (iter == 1 && digits_left % 2 == 1) {
 				min = (int) (input / power(digits - 1));
 			} else {
@@ -92,16 +92,16 @@ public class PinguSqrt {
 			sqrt *= 10;
 		}
 
-			// Convert to double, precision of two decimals, print result
-			double res;
-			if (digits_left == 1) {
-				res = (double) sqrt / power(1);
-			} else {
-				res = (double) sqrt / power(digits_left / 2);
-			}
-			
-			System.out.println("Ergebnis: " + res);
+		// Convert to double, precision of two decimals, print result
+		double res;
+		if (digits_left == 1) {
+			res = (double) sqrt / power(1);
+		} else {
+			res = (double) sqrt / power(digits_left / 2);
 		}
+			
+		System.out.println("Ergebnis: " + res);
+	}
 
 	// <|=================== Helpers ===================|>
 
