@@ -1,6 +1,5 @@
 package pgdp.math;
 
-
 public class PinguSqrt {
 
 	public static void sqrt(double n) {
@@ -9,6 +8,9 @@ public class PinguSqrt {
 			System.out.println("Keine negativen Wurzeln!");
 			return;
 		}
+		
+		// Print headline
+		System.out.println("Wurzel aus " + n + "\n");
 
 		// Count digits left of decimal point,
 		int digits_left = 0;
@@ -45,7 +47,7 @@ public class PinguSqrt {
 			// Loop iteration counter
             		iter++;
 
-            		// Obtain digit pair from input
+			// Obtain digit pair from input
 			if (iter == 1 && digits_left % 2 == 1) {
 				min = (int) (input / power(digits - 1));
 			} else {
@@ -92,16 +94,16 @@ public class PinguSqrt {
 			sqrt *= 10;
 		}
 
-		// Convert to double, precision of two decimals, print result
-		double res;
-		if (digits_left == 1) {
-			res = (double) sqrt / power(1);
-		} else {
-			res = (double) sqrt / power(digits_left / 2);
+			// Convert to double, precision of two decimals, print result
+			double res;
+			if (digits_left == 1) {
+				res = (double) sqrt / power(1);
+			} else {
+				res = (double) sqrt / power(digits_left / 2);
+			}
+
+			System.out.println("Ergebnis: " + res);
 		}
-			
-		System.out.println("Ergebnis: " + res);
-	}
 
 	// <|=================== Helpers ===================|>
 
