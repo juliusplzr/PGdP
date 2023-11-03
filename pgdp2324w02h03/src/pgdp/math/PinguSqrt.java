@@ -1,8 +1,6 @@
 package pgdp.math;
 
-
 public class PinguSqrt {
-
 	public static void sqrt(double n) {
 		// Check for negative n
 		if (n < 0) {
@@ -46,13 +44,17 @@ public class PinguSqrt {
 		// Main loop
 		while (digits > 0) {
 			// Loop iteration counter
-            		iter++;
+           		iter++;
 
 			// Obtain digit pair from input
-			if (iter == 1 && digits_left % 2 == 1) {
-				min = (int) (input / power(digits - 1));
+			if (digits == 1) {
+				break;
 			} else {
-				min = (int) (input / power(digits - 2));
+				if (iter == 1 && digits_left % 2 == 1) {
+					min = (int) (input / power(digits - 1));
+				} else {
+					min = (int) (input / power(digits - 2));
+				}
 			}
 
 			// Calculate new minuend by adding remainder * 100 and digit pair
@@ -84,8 +86,12 @@ public class PinguSqrt {
 			System.out.println("Rest: " + rem);
 			System.out.println("neue Ergebnis Ziffer: " + counter + "\n");
 
-			// Decrease digit count by two
-			digits -= 2;
+			// Decrease digit count
+			if (iter == 1 && digits_left % 2 == 1) {
+				digits--;
+			} else {
+				digits -= 2;
+			}
 
 			// Delete processed digits
 			input %= power(digits);
@@ -100,11 +106,11 @@ public class PinguSqrt {
 			if (digits_left == 1) {
 				res = (double) sqrt / power(1);
 			} else {
-				res = (double) sqrt / power(digits_left / 2);
+				res = (double) sqrt / power(digits_right);
 			}
 
 			System.out.println("Ergebnis: " + res);
-		}
+	}
 
 	// <|=================== Helpers ===================|>
 
@@ -120,6 +126,6 @@ public class PinguSqrt {
 
 	public static void main(String[] args) {
 		// test your implementation here
-		sqrt(4.0);
+		sqrt(2.25);
 	}
 }
