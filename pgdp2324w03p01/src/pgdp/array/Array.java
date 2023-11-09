@@ -1,7 +1,5 @@
 package pgdp.array;
 
-import java.util.concurrent.LinkedTransferQueue;
-
 public class Array {
 	public static void print(int[] a) {
 		System.out.print("{");
