@@ -36,11 +36,11 @@ public class Array {
 		int height = a.length;
 		int width = a[0].length;
 
-        for (int[] ints : a) {
-            if (ints.length != width) {
-                throw new IllegalArgumentException("Inner Arrays must be of same length!");
-            }
-        }
+        	for (int[] ints : a) {
+            		if (ints.length != width) {
+                		throw new IllegalArgumentException("Inner Arrays must be of same length!");
+            		}
+        	}
 
 		int[][] transpose = new int[width][height];
 
@@ -59,23 +59,24 @@ public class Array {
 		}
 
 		int elemCount = 0;
-        for (int[] ints : a) {
-            for (int j = 0; j < ints.length; j++) {
-                elemCount++;
-            }
-        }
+		
+        	for (int[] ints : a) {
+            		for (int j = 0; j < ints.length; j++) {
+                		elemCount++;
+            		}
+       		}
 
 		int[] linearized = new int[elemCount];
 
 		int index = 0;
 		for (int[] ints : a) {
-            for (int anInt : ints) {
-                if (index < elemCount) {
-                    linearized[index] = anInt;
+            		for (int anInt : ints) {
+                		if (index < elemCount) {
+                    			linearized[index] = anInt;
 					index++;
-                }
+                		}
 
-            }
+            		}
 		}
 
 		return linearized;
@@ -111,7 +112,7 @@ public class Array {
 
 	// <|=================== Helpers ===================|>
 
-	public static boolean traverseRight (char[][] letterGrid, char[] word, int startIndexX, int startIndexY) {
+	public static boolean traverseRight(char[][] letterGrid, char[] word, int startIndexX, int startIndexY) {
 		int letterIndex = 0;
 
 		for (int j = startIndexY; j < letterGrid[startIndexX].length; j++) {
@@ -125,7 +126,7 @@ public class Array {
 		return letterIndex == word.length;
 	}
 
-	public static boolean traverseDown (char[][] letterGrid, char[] word, int startIndexX, int startIndexY) {
+	public static boolean traverseDown(char[][] letterGrid, char[] word, int startIndexX, int startIndexY) {
 		int letterIndex = 0;
 
 		for (int i = startIndexX; i < letterGrid.length; i++) {
@@ -139,7 +140,7 @@ public class Array {
 		return letterIndex == word.length;
 	}
 
-	public static boolean traverseDiagonal (char[][] letterGrid, char[] word, int startIndexX, int startIndexY)  {
+	public static boolean traverseDiagonal(char[][] letterGrid, char[] word, int startIndexX, int startIndexY)  {
 		int letterIndex = 0;
 		int deltaX = letterGrid[0].length - startIndexX;
 
