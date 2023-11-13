@@ -21,7 +21,15 @@ public class bPHA1 {
 		}
 
 		return array;
-	}
+    }
+
+    // <|=============================== Exercise 2 ===============================|>
+    // Extract the anti-diagonals in a square int matrix and return as two-dimen-
+    // sional array.
+
+    public static int[][] getAntiDiagonals(int[][] matrix) {
+		return new int[0][0];
+    }
     
     public static void main(String[] args) {
         int[] testArray = {1, 2, 3, 4, 5, 8, 9};
