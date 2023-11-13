@@ -5,8 +5,9 @@
 // <|=============================== Exercise 1 ======================================|>
 
 // Write a method that will move all even numbers on the first half and odd numbers to
-// the second half in an integer array.
+// the second half in-place in an integer array.
 
 public static int[] paritySort(int[] array) {
+  // TODO
   return new int[0];
 }
