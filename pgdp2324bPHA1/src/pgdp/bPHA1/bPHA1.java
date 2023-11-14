@@ -147,6 +147,42 @@ public class bPHA1 {
 
 		return distinct;
 	}
+
+    // <|=============================== Exercise 4 ===============================|>
+    /** Zip arrays in 2d arrays, i. e. include one element of each array in order from
+     * first to last array.
+     *
+     * @param arrays Array of Integer-Arrays
+     * @return all arrays in arrays zipped together
+     */
+
+    public static int[] zipArrays(int[][] arrays){
+        int maxLength = 0;
+        int sumOfLengths = 0;
+	    
+        for (int i = 0; i < arrays.length; i++) {
+            sumOfLengths += arrays[i].length;
+            if (arrays[i].length > maxLength) {
+                maxLength = arrays[i].length;
+            }
+        }
+
+        int[] zippedArray = new int[sumOfLengths];
+        int zippedIndex = 0;
+	    
+        for (int j = 0; j < maxLength; j++) {
+            for (int i = 0; i < arrays.length; i++) {
+                if (j < arrays[i].length) {
+                    zippedArray[zippedIndex] = arrays[i][j];
+                    zippedIndex++;
+                }
+            }
+        }
+
+        return zippedArray;
+    }
+	
+
     // <|=============================== Main ===============================|>
     // Pro tip: Never test your implementation.
 	
