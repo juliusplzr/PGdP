@@ -7,6 +7,10 @@ public class bPHA1 {
     // with even numbers being moved into the first half of the array.
     
     public static int[] paritySort(int[] array) {
+	        if (array.length == 0) {
+			return array;
+		}
+	    
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] % 2 != 0) {
 				for (int j = i + 1; j < array.length; j++) {
@@ -25,7 +29,7 @@ public class bPHA1 {
 
     // <|=============================== Exercise 2 ===============================|>
     // Extract the anti-diagonals in a square int matrix and return as two-dimen-
-    // sional array.
+    // sional array. If the matrix is not square, return empty array and print error.
 
     public static int[][] getAntiDiagonals(int[][] matrix) {
 		if (matrix.length == 0) {
@@ -33,7 +37,7 @@ public class bPHA1 {
 		}
 
 		for (int i = 0; i < matrix.length - 1; i++) {
-			if (matrix[i].length != matrix[i + 1].length) {
+			if (matrix[i].length != matrix[i + 1].length || matrix.length != matrix[i].length) {
 				System.out.println("Matrix must be square.");
 				return new int[0][0];
 			}
@@ -65,6 +69,9 @@ public class bPHA1 {
 	}
 
 	// <|=============================== Helper ===============================|>
+	// Removes elements from int array in a given index interval INCLUDING (!) 
+	// BOTH lower and upper bound. If index interval is empty or index range invalid
+	// return empty array and print error.  
 
 	public static int[] removeRange(int[] array, int start, int end) {
 		if (array.length == 0) {
