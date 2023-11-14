@@ -38,7 +38,7 @@ public class bPHA1 {
 
 		for (int i = 0; i < matrix.length - 1; i++) {
 			if (matrix[i].length != matrix[i + 1].length || matrix.length != matrix[i].length) {
-				System.out.println("Matrix must be square.");
+				System.out.println("Matrix must be square!");
 				return new int[0][0];
 			}
 		}
@@ -79,11 +79,12 @@ public class bPHA1 {
 		}
 
 		if (start > end) {
-			return array;
+			System.out.println("Index range empty!");
+			return new int[0];
 		}
 
 		if (end > array.length - 1 || start < 0) {
-			System.out.println("Invalid index range.");
+			System.out.println("Invalid index range!");
 			return new int[0];
 		}
 
@@ -104,6 +105,10 @@ public class bPHA1 {
     // Extract all distinct elements from int array and return as new int array.
 	
     public static int[] distinct(int[] a) {
+	        if (a.length == 0) {
+			return a;
+		}
+	    
 		int distinctCount = 0;
 
 		for (int i = 0; i < a.length; i++) {
@@ -142,7 +147,9 @@ public class bPHA1 {
 
 		return distinct;
 	}
-    
+    // <|=============================== Main ===============================|>
+    // Pro tip: Never test your implementation.
+	
     public static void main(String[] args) {
         int[] testArray = {1, 2, 3, 4, 5, 8, 9};
         System.out.println("Test case: " + Arrays.toString(paritySort(testArray)));
