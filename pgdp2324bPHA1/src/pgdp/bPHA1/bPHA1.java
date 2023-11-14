@@ -28,8 +28,70 @@ public class bPHA1 {
     // sional array.
 
     public static int[][] getAntiDiagonals(int[][] matrix) {
-		return new int[0][0];
-    }
+		if (matrix.length == 0) {
+			return new int[0][0];
+		}
+
+		for (int i = 0; i < matrix.length - 1; i++) {
+			if (matrix[i].length != matrix[i + 1].length) {
+				System.out.println("Matrix must be square.");
+				return new int[0][0];
+			}
+		}
+
+		int[][] antiDiagonals = new int[2 * matrix.length - 1][matrix[0].length];
+
+		for (int diagonalIndexSum = 0; diagonalIndexSum <= matrix.length; diagonalIndexSum++) {
+			for (int i = 0; i < matrix.length; i++) {
+				for (int j = 0; j < matrix[i].length; j++) {
+					if (i + j == diagonalIndexSum) {
+						antiDiagonals[diagonalIndexSum][j] = matrix[i][j];
+					}
+				}
+			}
+		}
+
+
+		for (int i = 0; i < antiDiagonals.length; i++) {
+			if (i < (antiDiagonals.length / 2)) {
+				antiDiagonals[i] = removeRange(antiDiagonals[i], i + 1, antiDiagonals[i].length - 1);
+			} else {
+				antiDiagonals[i] = (i != antiDiagonals.length / 2) ? removeRange(antiDiagonals[i], 0,
+						i - (antiDiagonals.length / 2 + 1)) : antiDiagonals[i];
+			}
+		}
+
+		return antiDiagonals;
+	}
+
+	// <|=============================== Helper ===============================|>
+
+	public static int[] removeRange(int[] array, int start, int end) {
+		if (array.length == 0) {
+			return new int[0];
+		}
+
+		if (start > end) {
+			return array;
+		}
+
+		if (end > array.length - 1 || start < 0) {
+			System.out.println("Invalid index range.");
+			return new int[0];
+		}
+
+		int[] removed = new int[array.length - (end - start + 1)];
+
+		for (int i = 0; i < start; i++) {
+			removed[i] = array[i];
+		}
+
+		for (int i = end + 1; i < array.length; i++) {
+			removed[i - (end - start + 1)] = array[i];
+		}
+
+		return removed;
+	}
 
     // <|=============================== Exercise 3 ===============================|>
     // Extract all distinct elements from int array and return as new int array.
