@@ -181,6 +181,64 @@ public class bPHA1 {
 
         return zippedArray;
     }
+
+    // <|=============================== Exercise 5 ===============================|>
+    /** Given a string array words, return the maximum value of length(word[i]) * 
+    * length(word[j]) where the two words do not share common letters. If no such two
+    * words exist, return 0.
+    * @param String[] words
+    * @return max product of two words with distinct letters
+    */
+
+    public static int maxWordProduct(String[] words) {
+		if (words.length == 0) {
+			return 0;
+		}
+
+		int[][] letterCollection = new int[2 * words.length][26];
+
+		for (int i = 0; i < (letterCollection.length / 2); i++) {
+			for (int j = 0; j < words[i].length(); j++) {
+				if (words[i].charAt(j) >= 'a' && words[i].charAt(j) <= 'z') {
+					letterCollection[i][words[i].charAt(j) - 'a']++;
+				}
+			}
+		}
+
+		for (int i = (letterCollection.length / 2); i < letterCollection.length; i++) {
+			for (int j = 0; j < words[i].length(); j++) {
+				if (words[i].charAt(j) >= 'A' && words[i].charAt(j) <= 'Z') {
+					letterCollection[i][words[i].charAt(j) - 'Z']++;
+				}
+			}
+		}
+
+		int max = 0;
+
+		for (int i = 0; i < letterCollection.length - 1; i++) {
+			int[] word1 = letterCollection[i];
+
+			for (int j = i + 1; j < letterCollection.length; j++) {
+				int[] word2 = letterCollection[j];
+
+				boolean sameLetter = false;
+
+				for (int letter = 0; letter < word1.length; letter++) {
+					if (word1[letter] > 0 && word2[letter] > 0) {
+						sameLetter = true;
+						break;
+					}
+				}
+
+				if (!sameLetter) {
+					max = words[i].length() * words[j].length();
+				}
+			}
+		}
+
+		return max;
+	}
+    
 	
 
     // <|=============================== Main ===============================|>
