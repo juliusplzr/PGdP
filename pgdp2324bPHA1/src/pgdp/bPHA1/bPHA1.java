@@ -183,66 +183,78 @@ public class bPHA1 {
     }
 
     // <|=============================== Exercise 5 ===============================|>
-    /** Given a string array words, return the maximum value of length(word[i]) * 
-    * length(word[j]) where the two words do not share common letters. If no such two
-    * words exist, return 0.
+    /** Given a string array (lower and upper-case letters) of words, return the 
+    * maximum value of length(word[i]) * length(word[j]) where the two words do not 
+    * share common letters. If no such two words exist, return -1.
     * @param String[] words
     * @return max product of two words with distinct letters
     */
 
     public static int maxWordProduct(String[] words) {
-		if (words.length == 0) {
-			return 0;
-		}
-
-		int[][] letterCollection = new int[2 * words.length][26];
-
-		for (int i = 0; i < (letterCollection.length / 2); i++) {
-			for (int j = 0; j < words[i].length(); j++) {
-				if (words[i].charAt(j) >= 'a' && words[i].charAt(j) <= 'z') {
-					letterCollection[i][words[i].charAt(j) - 'a']++;
-				}
-			}
-		}
-
-		for (int i = (letterCollection.length / 2); i < letterCollection.length; i++) {
-			for (int j = 0; j < words[i].length(); j++) {
-				if (words[i].charAt(j) >= 'A' && words[i].charAt(j) <= 'Z') {
-					letterCollection[i][words[i].charAt(j) - 'Z']++;
-				}
-			}
-		}
-
-		int max = 0;
-
-		for (int i = 0; i < letterCollection.length - 1; i++) {
-			int[] word1 = letterCollection[i];
-
-			for (int j = i + 1; j < letterCollection.length; j++) {
-				int[] word2 = letterCollection[j];
-
-				boolean sameLetter = false;
-
-				for (int letter = 0; letter < word1.length; letter++) {
-					if (word1[letter] > 0 && word2[letter] > 0) {
-						sameLetter = true;
-						break;
-					}
-				}
-
-				if (!sameLetter) {
-					max = words[i].length() * words[j].length();
-				}
-			}
-		}
-
-		return max;
+	if (words.length == 0) {
+		return -1;
 	}
+
+        for (String word : words) {
+		boolean invalid = false;
+
+            for (int j = 0; j < word.length(); j++) {
+                if (word.charAt(j) > 'z' || word.charAt(j) < 'A' ||
+                        (word.charAt(j) > 90 && word.charAt(j) < 97)) {
+                    invalid = true;
+                    break;
+                }
+            }
+
+            if (invalid) {
+		return -1;
+            }
+         }
+
+	int[][] letterCollection = new int[words.length][52];
+
+	for (int i = 0; i < letterCollection.length; i++) {
+		for (int j = 0; j < words[i].length(); j++) {
+			if (words[i].charAt(j) >= 'a' && words[i].charAt(j) <= 'z') {
+				letterCollection[i][words[i].charAt(j) - 'a']++;
+			} else {
+				letterCollection[i][words[i].charAt(j) - 'A' + 26]++;
+			}
+		}
+	}
+
+	int max = -1;
+
+	for (int i = 0; i < letterCollection.length - 1; i++) {
+		int[] word1 = letterCollection[i];
+
+		for (int j = i + 1; j < letterCollection.length; j++) {
+			int[] word2 = letterCollection[j];
+
+			boolean sameLetter = false;
+
+			for (int letter = 0; letter < word1.length; letter++) {
+				if (word1[letter] > 0 && word2[letter] > 0) {
+					sameLetter = true;
+					break;
+				}
+			}
+
+			if (!sameLetter) {
+				int prod = words[i].length() * words[j].length();
+				max = (prod > max) ? prod : max;
+			}
+		}
+	}
+
+	return max;
+   }
     
 	
 
     // <|=============================== Main ===============================|>
-    // Pro tip: Never test your implementation.
+    // Pro tip: Your implementation won't fail if you don't test it in the first
+    // place.
 	
     public static void main(String[] args) {
         int[] testArray = {1, 2, 3, 4, 5, 8, 9};
