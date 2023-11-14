@@ -41,7 +41,7 @@ public class bPHA1 {
 
 		int[][] antiDiagonals = new int[2 * matrix.length - 1][matrix[0].length];
 
-		for (int diagonalIndexSum = 0; diagonalIndexSum <= matrix.length; diagonalIndexSum++) {
+		for (int diagonalIndexSum = 0; diagonalIndexSum <= 2 * (matrix.length - 1); diagonalIndexSum++) {
 			for (int i = 0; i < matrix.length; i++) {
 				for (int j = 0; j < matrix[i].length; j++) {
 					if (i + j == diagonalIndexSum) {
