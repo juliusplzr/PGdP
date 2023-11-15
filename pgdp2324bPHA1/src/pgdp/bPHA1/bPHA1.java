@@ -4,6 +4,35 @@ package pgdp.hello;
 
 public class bPHA1 {
 
+    // Gas station problem
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int totalGas=0;
+        int totalCost=0;
+
+        for(int i=0;i<gas.length;i++)
+        {
+            totalGas+=gas[i];
+            totalCost+=cost[i];
+        }
+        if(totalGas<totalCost)
+        {
+            return -1;
+        }
+        int remainingGas=0;
+        int start=0;
+        for(int i=0;i<gas.length;i++)
+        {
+            remainingGas=remainingGas+(gas[i]-cost[i]);
+            if(remainingGas<0)
+            {
+                start=i+1;
+                remainingGas=0;
+            }
+        }
+
+        return start;
+    }
+
     // <|=============================== Exercise 1 ===============================|>
     /** Given two integer arrays array1 and array2, return an array of their intersection.
     * Each element in the result must be unique and you may return the result in any order.
