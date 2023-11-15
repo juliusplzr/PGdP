@@ -250,11 +250,59 @@ public class bPHA1 {
 	return max;
     }
 
-    // <|=============================== Exercise 5 ===============================|>
+    // <|=============================== Exercise 6 ===============================|>
     /** Given an integer array nums, reorder it in-place such that nums[0] < nums[1] 
     * > nums[2] < nums[3]... You may assume the input array always has a valid answer.
     * @param int[] nums
     */
+
+    public static void wiggleSort(int[] array) {
+		int length = array.length;
+
+		if (length == 0 || length == 1) {
+			System.out.println("Array already sorted!");
+			return;
+		}
+
+		int temp;
+		for (int i = 0; i < array.length; i++) {
+			for (int j = i; j < array.length; j++) {
+				if (array[i] > array[j]) {
+					temp = array[j];
+					array[j] = array[i];
+					array[i] = temp;
+				}
+			}
+		}
+
+		int median;
+		if (length % 2 != 0) {
+			median = array[length / 2];
+		} else {
+			median = (array[length / 2] + array[(length / 2) - 1]) / 2;
+		}
+
+		int largePos = 1;
+		int smallPos = (length % 2 == 0) ? length - 2 : length - 1;
+		int currentPos = 0;
+
+		while (currentPos < length) {
+			int aux;
+			if (array[currentPos] < median && (currentPos < smallPos || (currentPos % 2 != 0))) {
+				aux = array[smallPos];
+				array[smallPos] = array[currentPos];
+				array[currentPos] = aux;
+				smallPos -= 2;
+			} else if (array[currentPos] > median && (currentPos > largePos || (currentPos % 2 == 0))) {
+				aux = array[largePos];
+				array[largePos] = array[currentPos];
+				array[currentPos] = aux;
+				largePos += 2;
+			} else {
+				currentPos++;
+			}
+		}
+	}
     
 	
 
