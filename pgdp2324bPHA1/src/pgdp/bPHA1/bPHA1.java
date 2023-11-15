@@ -7,7 +7,39 @@ public class bPHA1 {
     // <|=============================== Exercise 1 ===============================|>
     /** Given two integer arrays array1 and array2, return an array of their intersection.
     * Each element in the result must be unique and you may return the result in any order.
+    * @param int array1 and int array2
+    * @return intersection of both arrays 
     */
+
+    public static int[] intersection(int[] array1, int[] array2) {
+		if (array1.length == 0 || array2.length == 0) {
+			return new int[0];
+		}
+
+		int intersectionCount = 0;
+        for (int k : array1) {
+            for (int i : array2) {
+                if (k == i) {
+                    intersectionCount++;
+                }
+            }
+        }
+
+		int[] intersection = new int[intersectionCount];
+		int currentPos = 0;
+
+        for (int k : array1) {
+            for (int i : array2) {
+                if (k == i) {
+                    intersection[currentPos] = k;
+                    currentPos++;
+                }
+            }
+        }
+
+	return distinct(intersection);
+
+    }
     
     // <|=============================== Exercise 1 ===============================|>
     // Sort the array such that even numbers are strictly separated from odd numbers
