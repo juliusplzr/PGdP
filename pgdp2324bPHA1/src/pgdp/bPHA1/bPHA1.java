@@ -248,7 +248,13 @@ public class bPHA1 {
 	}
 
 	return max;
-   }
+    }
+
+    // <|=============================== Exercise 5 ===============================|>
+    /** Given an integer array nums, reorder it in-place such that nums[0] < nums[1] 
+    * > nums[2] < nums[3]... You may assume the input array always has a valid answer.
+    * @param int[] nums
+    */
     
 	
 
