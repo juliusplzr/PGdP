@@ -1,6 +1,13 @@
 package pgdp.hello;
 
+// Examplatory exercises ranked from easy to hard in ascending order.
+
 public class bPHA1 {
+
+    // <|=============================== Exercise 1 ===============================|>
+    /** Given two integer arrays array1 and array2, return an array of their intersection.
+    * Each element in the result must be unique and you may return the result in any order.
+    */
     
     // <|=============================== Exercise 1 ===============================|>
     // Sort the array such that even numbers are strictly separated from odd numbers
