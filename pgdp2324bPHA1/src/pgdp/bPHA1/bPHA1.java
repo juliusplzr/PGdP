@@ -149,8 +149,8 @@ public class bPHA1 {
 	}
 
     // <|=============================== Exercise 4 ===============================|>
-    /** Zip arrays in 2d arrays, i. e. include one element of each array in order from
-     * first to last array.
+    /** Zip all arrays from a 2d array, i. e. include one element of each array in order 
+     * from first to last array.
      *
      * @param arrays Array of Integer-Arrays
      * @return all arrays in arrays zipped together
@@ -251,8 +251,8 @@ public class bPHA1 {
     }
 
     // <|=============================== Exercise 6 ===============================|>
-    /** Given an integer array nums, reorder it in-place such that nums[0] < nums[1] 
-    * > nums[2] < nums[3]... You may assume the input array always has a valid answer.
+    /** Given an integer array nums, reorder it in-place such that array[0] < array[1] 
+    * > array[2] < array[3]... You may assume the input array always has a valid answer.
     * @param int[] nums
     */
 
