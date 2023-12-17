@@ -165,10 +165,6 @@ public final class SimpleGenerics {
 		int current = 0;
 
 		while (current < collections.length) {
-			if (collections.length == 1) {
-				return collections[current];
-			}
-
 			A:
 			for (final var e : collections[current]) {
 				boolean includedAll = true;
