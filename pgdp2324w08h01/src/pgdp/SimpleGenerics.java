@@ -112,13 +112,17 @@ public final class SimpleGenerics {
 		T[] left = generateGenericArray(clazz, n1);
 		T[] right = generateGenericArray(clazz, n1);
 
-        if (n1 >= 0) System.arraycopy(arr, start, left, 0, n1);
+	        if (n1 >= 0) {
+			System.arraycopy(arr, start, left, 0, n1);
+		}
 
 		for (int i = 0; i < n2; i++) {
 			right[i] = arr[middle + 1 + i];
 		}
 
-		int i = 0, j = 0, k = start;
+		int i = 0;
+		int j = 0;
+		int k = start;
 
 		while (i < n1 && j < n2) {
 			if (comparator.compare(left[i], right[j]) < 0) {
