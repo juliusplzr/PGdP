@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nonlinear_datastructs.GraphTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-20T00:37:28" hostname="MacBook-Air-von-Julius.local" time="0.039">
+  <properties/>
+  <testcase name="Simple Graph - Integer" classname="nonlinear_datastructs.GraphTest" time="0.039"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
