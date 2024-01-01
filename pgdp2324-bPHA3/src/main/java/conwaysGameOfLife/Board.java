@@ -9,11 +9,11 @@ import javax.swing.*;
 public class Board {
     private final JFrame frame;
     private Tile[][] board;
-    private int gen;
+    private int genCounter;
 
     public Board(int height, int width, int delay) {
         board = new Tile[height][width];
-        gen = 0;
+        genCounter = 0;
 
         Random randomGenerator = new Random();
 
@@ -41,6 +41,21 @@ public class Board {
 
         frame.setVisible(true);
         frame.setSize(800, 800);
+
+        System.out.println("Generation = 0");
+
+        int population = 0;
+
+        for (int i = 0; i < height; i++)  {
+            for (int j = 0; j < width; j++) {
+                if (board[i][j] == Tile.ALIVE) {
+                    population++;
+                }
+            }
+        }
+
+        System.out.println("Population = " + population);
+        System.out.println("--------------------------");
 
         initializeTimer(delay);
     }
@@ -99,8 +114,21 @@ public class Board {
         frame.validate();
         frame.repaint();
 
-        gen++;
-        System.out.println("Displayed: generation " + gen);
+        genCounter++;
+        System.out.println("Generation = " + genCounter);
+
+        int population = 0;
+
+        for (int i = 0; i < height; i++)  {
+            for (int j = 0; j < width; j++) {
+                if (board[i][j] == Tile.ALIVE) {
+                    population++;
+                }
+            }
+        }
+
+        System.out.println("Population = " + population);
+        System.out.println("--------------------------");
     }
 
     public void initializeTimer(int delay) {
@@ -121,6 +149,6 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board testBoard = new Board(10,10, 1000);
+        Board testBoard = new Board(100,100, 1000);
     }
 }
